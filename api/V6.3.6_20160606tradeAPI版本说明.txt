@@ -1,0 +1,64 @@
+版本号：v6.3.6_20160715
+兼容版本：CTP1.0 v6.3.6及以上后台系统
+
+变更说明：
+1.修复api如果多次断线可能导致占用内存过多而崩溃的问题。
+2.交易类接口中新增字段LongCustomerName,traderapi涉及到的函数见下文（mduserapi没有涉及到） 
+
+///长客户姓名
+TThostFtdcLongIndividualNameType	LongCustomerName;
+typedef char TThostFtdcLongIndividualNameType[161];
+
+
+影响接口如下：
+
+1、期货端发起的转账	
+        函数		                含义			              使用的数据结构
+	ReqFromBankToFutureByFuture	期货发起银行资金转期货请求	CThostFtdcReqTransferField
+	ReqFromFutureToBankByFuture	期货发起期货资金转银行请求	CThostFtdcReqTransferField
+	OnRspFromBankToFutureByFuture	期货发起银行资金转期货应答	CThostFtdcReqTransferField
+	OnRspFromFutureToBankByFuture	期货发起期货资金转银行应答	CThostFtdcReqTransferField
+	OnErrRtnBankToFutureByFuture	期货发起银行资金转期货错误回报	CThostFtdcReqTransferField
+	OnErrRtnFutureToBankByFuture	期货发起期货资金转银行错误回报	CThostFtdcReqTransferField
+	OnRtnFromBankToFutureByFuture	期货发起银行资金转期货通知	CThostFtdcRspTransferField
+	OnRtnFromFutureToBankByFuture	期货发起期货资金转银行通知	CThostFtdcRspTransferField
+      
+2、银行端发起的转账   
+        函数		                含义			              使用的数据结构
+	OnRtnFromBankToFutureByBank	银行发起银行资金转期货通知	CThostFtdcRspTransferField
+	OnRtnFromFutureToBankByBank	银行发起期货资金转银行通知	CThostFtdcRspTransferField
+
+3、期货端发起冲正
+
+        函数		                         含义			                                                使用的数据结构
+	OnErrRtnRepealBankToFutureByFutureManual 系统运行时期货端手工发起冲正银行转期货错误回报	                        CThostFtdcReqRepealField
+	OnErrRtnRepealFutureToBankByFutureManual 系统运行时期货端手工发起冲正期货转银行错误回报	                        CThostFtdcReqRepealField
+        OnRtnRepealFromBankToFutureByFutureManual 系统运行时期货端手工发起冲正银行转期货请求，银行处理完毕后报盘发回的通知  CThostFtdcRspRepealField
+        OnRtnRepealFromFutureToBankByFutureManual 系统运行时期货端手工发起冲正期货转银行请求，银行处理完毕后报盘发回的通知  CThostFtdcRspRepealField
+        OnRtnRepealFromBankToFutureByFuture       期货发起冲正银行转期货请求，银行处理完毕后报盘发回的通知                 CThostFtdcRspRepealField
+        OnRtnRepealFromFutureToBankByFuture       期货发起冲正期货转银行请求，银行处理完毕后报盘发回的通知                 CThostFtdcRspRepealField
+   
+4、银行端发起冲正
+        函数		                      含义			          使用的数据结构
+	OnRtnRepealFromBankToFutureByBank     银行发起冲正银行转期货通知	    CThostFtdcRspRepealField
+        OnRtnRepealFromFutureToBankByBank     银行发起冲正期货转银行通知      CThostFtdcRspRepealField
+
+5、期货端发起查询
+        函数		                      含义			          使用的数据结构
+	ReqQueryBankAccountMoneyByFuture     期货发起查询银行余额请求	    CThostFtdcReqQueryAccountField
+        OnRspQueryBankAccountMoneyByFuture   期货发起查询银行余额请求        CThostFtdcReqQueryAccountField
+        OnErrRtnQueryBankBalanceByFuture     期货发起查询银行余额错误回报     CThostFtdcReqQueryAccountField
+        OnRtnQueryBankBalanceByFuture        期货发起查询银行余额通知         CThostFtdcNotifyQueryAccountField
+
+6、查询银期签约关系响应
+        函数		             含义	                    使用的数据结构
+	OnRspQryAccountregister     请求查询银期签约关系响应	    CThostFtdcAccountregisterField       
+
+
+7、银行发起的银期开户、销户、变更账户通知
+        函数		           含义	                    使用的数据结构
+	OnRtnOpenAccountByBank     银行发起银期开户通知	    CThostFtdcOpenAccountField
+        OnRtnCancelAccountByBank   银行发起银期销户通知      CThostFtdcCancelAccountField
+        OnRtnChangeAccountByBank   银行发起变更银行账号通知  CThostFtdcChangeAccountField
+
+      
