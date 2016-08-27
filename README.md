@@ -22,3 +22,18 @@ SWIG fills this gap.
 ## Why goCTP
 
 This is a matter of course.
+
+## How to Build goCTP
+> Only support Linux X64 now.
+
+```
+go get -u github.com/qerio/goctp
+
+make build
+```
+
+## example 
+
+```
+make example
+```
