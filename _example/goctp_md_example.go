@@ -8,6 +8,7 @@ import (
 	"flag"
 	"github.com/qerio/goctp"
 	"log"
+	"os"
 )
 
 var (
@@ -102,11 +103,11 @@ func (p *GoCThostFtdcMdSpi) OnRspUserLogin(pRspUserLogin goctp.CThostFtdcRspUser
 
 	if bIsLast && !p.IsErrorRspInfo(pRspInfo) {
 
-		log.Printf("获取版本信息    : %#v\n", goctp.CThostFtdcTraderApiGetApiVersion())
-		log.Printf("获取当前交易日  : %#v\n", p.Client.MdApi.GetTradingDay())
+		log.Printf("获取当前版本信息: %#v\n", goctp.CThostFtdcTraderApiGetApiVersion())
+		log.Printf("获取当前交易日期: %#v\n", p.Client.MdApi.GetTradingDay())
 		log.Printf("获取用户登录信息: %#v %#v %#v\n", pRspUserLogin.GetLoginTime(), pRspUserLogin.GetSystemName(), pRspUserLogin.GetSessionID())
 
-		ppInstrumentID := []string{"cu1610", "cu1611", "cu1612"}
+		ppInstrumentID := []string{"cu1610", "cu1611", "cu1612", "cu1701", "cu1702", "cu1703", "cu1704", "cu1705", "cu1706"}
 
 		p.SubscribeMarketData(ppInstrumentID)
 		p.SubscribeForQuoteRsp(ppInstrumentID)
@@ -179,9 +180,14 @@ func (p *GoCThostFtdcMdSpi) OnRtnForQuoteRsp(pForQuoteRsp goctp.CThostFtdcForQuo
 
 func init() {
 	log.SetFlags(log.LstdFlags)
+	log.SetPrefix("CTP: ")
 }
 
 func main() {
+
+	if len(os.Args) < 2 {
+		log.Fatal("usage: ./goctp_md_example -BrokerID 9999 -InvestorID 000000 -Password 000000 -MarketFront tcp://180.168.146.187:10010 -TradeFront tcp://180.168.146.187:10000")
+	}
 
 	flag.Parse()
 
@@ -199,6 +205,8 @@ func main() {
 		MdRequestID:     0,
 		TraderRequestID: 0,
 	}
+
+	log.Printf("客户端配置: %+#v\n", CTP)
 
 	pMdSpi := goctp.NewDirectorCThostFtdcMdSpi(&GoCThostFtdcMdSpi{Client: CTP})
 

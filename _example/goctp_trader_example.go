@@ -8,6 +8,7 @@ import (
 	"flag"
 	"github.com/qerio/goctp"
 	"log"
+	"os"
 	"time"
 )
 
@@ -248,9 +249,14 @@ func (p *GoCThostFtdcTraderSpi) OnRspQryInvestorPosition(pInvestorPosition goctp
 
 func init() {
 	log.SetFlags(log.LstdFlags)
+	log.SetPrefix("CTP: ")
 }
 
 func main() {
+
+	if len(os.Args) < 2 {
+		log.Fatal("usage: ./goctp_trader_example -BrokerID 9999 -InvestorID 000000 -Password 000000 -MarketFront tcp://180.168.146.187:10010 -TradeFront tcp://180.168.146.187:10000")
+	}
 
 	flag.Parse()
 

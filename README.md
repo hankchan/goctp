@@ -32,7 +32,7 @@ go get -u github.com/qerio/goctp
 make build
 ```
 
-## example 
+## How to Build example 
 
 ```
 make example
