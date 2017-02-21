@@ -61,10 +61,10 @@
 %header %{
 #if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__) || defined(WIN32)
 
-#include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
-#include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
-#include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
-#include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcTraderApi.h"
+#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiDataType.h" 
+#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiStruct.h"
+#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcMdApi.h"
+#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcTraderApi.h"
 
 #else
 
@@ -84,10 +84,10 @@
 
 #if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__) || defined(WIN32)
 
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcTraderApi.h"
+%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiDataType.h" 
+%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiStruct.h"
+%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcMdApi.h"
+%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcTraderApi.h"
 
 #else
 
