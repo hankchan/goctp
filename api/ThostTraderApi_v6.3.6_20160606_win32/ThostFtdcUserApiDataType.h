@@ -4482,13 +4482,13 @@ typedef char TThostFtdcMonthBillTradeSumType;
 ///TFtdcFBTTradeCodeEnumType是一个银期交易代码枚举类型
 /////////////////////////////////////////////////////////////////////////
 ///银行发起银行转期货
-#define THOST_FTDC_FTC_BankLaunchBankToBroker '102001'
+//#define THOST_FTDC_FTC_BankLaunchBankToBroker '102001'
 ///期货发起银行转期货
-#define THOST_FTDC_FTC_BrokerLaunchBankToBroker '202001'
+//#define THOST_FTDC_FTC_BrokerLaunchBankToBroker '202001'
 ///银行发起期货转银行
-#define THOST_FTDC_FTC_BankLaunchBrokerToBank '102002'
+//#define THOST_FTDC_FTC_BankLaunchBrokerToBank '102002'
 ///期货发起期货转银行
-#define THOST_FTDC_FTC_BrokerLaunchBrokerToBank '202002'
+//#define THOST_FTDC_FTC_BrokerLaunchBrokerToBank '202002'
 
 typedef char TThostFtdcFBTTradeCodeEnumType;
 
