@@ -107,7 +107,8 @@ func (p *GoCThostFtdcMdSpi) OnRspUserLogin(pRspUserLogin goctp.CThostFtdcRspUser
 		log.Printf("获取当前交易日期: %#v\n", p.Client.MdApi.GetTradingDay())
 		log.Printf("获取用户登录信息: %#v %#v %#v\n", pRspUserLogin.GetLoginTime(), pRspUserLogin.GetSystemName(), pRspUserLogin.GetSessionID())
 
-		ppInstrumentID := []string{"cu1610", "cu1611", "cu1612", "cu1701", "cu1702", "cu1703", "cu1704", "cu1705", "cu1706"}
+		//ppInstrumentID := []string{"cu1610", "cu1611", "cu1612", "cu1701", "cu1702", "cu1703", "cu1704", "cu1705", "cu1706"}
+		ppInstrumentID := []string{"cu1711", "cu1712"}
 
 		p.SubscribeMarketData(ppInstrumentID)
 		p.SubscribeForQuoteRsp(ppInstrumentID)
@@ -172,6 +173,9 @@ func (p *GoCThostFtdcMdSpi) OnRtnDepthMarketData(pDepthMarketData goctp.CThostFt
 		pDepthMarketData.GetVolume(),
 		pDepthMarketData.GetTurnover(),
 		pDepthMarketData.GetOpenInterest())
+
+	//log.Printf("GoCThostFtdcMdSpi.OnRtnDepthMarketData: %+v\n", &pDepthMarketData)
+
 }
 
 func (p *GoCThostFtdcMdSpi) OnRtnForQuoteRsp(pForQuoteRsp goctp.CThostFtdcForQuoteRspField) {
@@ -179,7 +183,7 @@ func (p *GoCThostFtdcMdSpi) OnRtnForQuoteRsp(pForQuoteRsp goctp.CThostFtdcForQuo
 }
 
 func init() {
-	log.SetFlags(log.LstdFlags)
+	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
 	log.SetPrefix("CTP: ")
 }
 

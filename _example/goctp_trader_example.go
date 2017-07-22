@@ -248,7 +248,7 @@ func (p *GoCThostFtdcTraderSpi) OnRspQryInvestorPosition(pInvestorPosition goctp
 }
 
 func init() {
-	log.SetFlags(log.LstdFlags)
+	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
 	log.SetPrefix("CTP: ")
 }
 

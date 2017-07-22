@@ -6,6 +6,8 @@
 
 %module(directors="1") goctp
 
+//%#pragma SWIG nowarn=514
+
 %init %{ 
   //printf("Initialization goctp done.\n");
 %}
@@ -55,24 +57,21 @@
 
 /* 在复杂的企业环境中，可能有一些 C/C++ 头文件定义了您希望向脚本框架公开的全局变量和常量。
  * 在接口文件中使用 %include <header.h> 和 %{ #include <header.h> %}，可解决在头文件中重复所有元素的声明的问题。
+ * 有一点值得注意，在MSVC中，32位环境（当然是说跑的Intel 兼容CPU的PC）预定义宏_WIN32，但64位环境同时预定义了_WIN32和_WIN64。
  */
 
 /* Includes the header files in the wrapper code */
 %header %{
-#if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__) || defined(WIN32)
-
-#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiDataType.h" 
-#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiStruct.h"
-#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcMdApi.h"
-#include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcTraderApi.h"
-
+#if defined(_WIN32) || defined(_WIN64)
+  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
+  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
+  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
+  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcTraderApi.h"
 #else
-
-#include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiDataType.h" 
-#include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiStruct.h"
-#include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcMdApi.h"
-#include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcTraderApi.h"
-
+  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiDataType.h" 
+  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiStruct.h"
+  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcMdApi.h"
+  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcTraderApi.h"
 #endif
 %}
 
@@ -82,19 +81,15 @@
 %feature("director") CThostFtdcMdSpi;
 %feature("director") CThostFtdcTraderSpi;
 
-#if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__) || defined(WIN32)
-
-%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiDataType.h" 
-%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcUserApiStruct.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcMdApi.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_win32/ThostFtdcTraderApi.h"
-
-#else
-
+%#if defined(_WIN32) || defined(_WIN64)
+%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
+%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
+%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
+%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcTraderApi.h"
+%#else
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiDataType.h" 
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiStruct.h"
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcMdApi.h"
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcTraderApi.h"
-
-#endif
+%#endif
 
