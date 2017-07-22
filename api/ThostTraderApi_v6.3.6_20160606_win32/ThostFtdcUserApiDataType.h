@@ -2591,13 +2591,13 @@ typedef char TThostFtdcVirementAvailAbilityType;
 ///TFtdcVirementTradeCodeType是一个交易代码类型
 /////////////////////////////////////////////////////////////////////////
 ///银行发起银行资金转期货
-#define THOST_FTDC_VTC_BankBankToFuture '102001'
+//#define THOST_FTDC_VTC_BankBankToFuture '102001'
 ///银行发起期货资金转银行
-#define THOST_FTDC_VTC_BankFutureToBank '102002'
+//#define THOST_FTDC_VTC_BankFutureToBank '102002'
 ///期货发起银行资金转期货
-#define THOST_FTDC_VTC_FutureBankToFuture '202001'
+//#define THOST_FTDC_VTC_FutureBankToFuture '202001'
 ///期货发起期货资金转银行
-#define THOST_FTDC_VTC_FutureFutureToBank '202002'
+//#define THOST_FTDC_VTC_FutureFutureToBank '202002'
 
 typedef char TThostFtdcVirementTradeCodeType;
 
