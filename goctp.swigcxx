@@ -6,8 +6,6 @@
 
 %module(directors="1") goctp
 
-//%#pragma SWIG nowarn=514
-
 %init %{ 
   //printf("Initialization goctp done.\n");
 %}
@@ -62,7 +60,7 @@
 
 /* Includes the header files in the wrapper code */
 %header %{
-#if defined(_WIN32) || defined(_WIN64)
+#if defined(__WIN32__) || defined(_WIN32) || defined(_WIN64)
   #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
   #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
   #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
@@ -81,15 +79,15 @@
 %feature("director") CThostFtdcMdSpi;
 %feature("director") CThostFtdcTraderSpi;
 
-%#if defined(_WIN32) || defined(_WIN64)
+#if defined(__WIN32__) || defined(_WIN32) || defined(_WIN64)
 %include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
 %include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
 %include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
 %include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcTraderApi.h"
-%#else
+#else
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiDataType.h" 
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiStruct.h"
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcMdApi.h"
 %include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcTraderApi.h"
-%#endif
+#endif
 

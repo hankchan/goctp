@@ -6,15 +6,8 @@
 
 package goctp
 
-/*
-#cgo linux LDFLAGS: -fPIC -L. -L$GOPATH/src/github.com/qerio/goctp/api/ThostTraderApi_v6.3.6_20160606_linux64 -Wl,-rpath=$GOPATH/src/github.com/qerio/goctp/api/ThostTraderApi_v6.3.6_20160606_linux64 -lthostmduserapi -lthosttraderapi -lstdc++
-#cgo linux CPPFLAGS: -fPIC -I. -I$GOPATH/src/github.com/qerio/goctp/api/ThostTraderApi_v6.3.6_20160606_linux64
-
-#cgo windows LDFLAGS: -lmsvcrt -lm -mthread
-#cgo windows LDFLAGS: -fPIC -L. -L$GOPATH/src/github.com/qerio/goctp/api/ThostTraderApi_v6.3.6_20160606_win64 -lthostmduserapi -lthosttraderapi
-#cgo windows CPPFLAGS: -fPIC -I. -I$GOPATH/src/github.com/qerio/goctp/api/ThostTraderApi_v6.3.6_20160606_win64 -D_WIN64 -DISLIB -DLIB_MD_API_EXPORT -DLIB_TRADER_API_EXPORT
-
-#cgo CFLAGS: -Wall -Werror
-*/
-
+// #cgo linux LDFLAGS: -fPIC -L${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_linux64 -Wl,-rpath=${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_linux64 -lthostmduserapi -lthosttraderapi -lstdc++
+// #cgo linux CPPFLAGS: -fPIC -I${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_linux64
+// #cgo windows LDFLAGS: -fPIC -L${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_win64 -Wl,-rpath=${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_win64 ${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_win64/thostmduserapi.lib ${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_win64/thosttraderapi.lib -lthostmduserapi -lthosttraderapi -lstdc++
+// #cgo windows CPPFLAGS: -fPIC -I${SRCDIR}/api/ThostTraderApi_v6.3.6_20160606_win64
 import "C"
