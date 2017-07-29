@@ -60,17 +60,10 @@
 
 /* Includes the header files in the wrapper code */
 %header %{
-#if defined(__WIN32__) || defined(_WIN32) || defined(_WIN64)
-  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
-  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
-  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
-  #include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcTraderApi.h"
-#else
-  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiDataType.h" 
-  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiStruct.h"
-  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcMdApi.h"
-  #include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcTraderApi.h"
-#endif
+#include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcUserApiDataType.h" 
+#include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcUserApiStruct.h"
+#include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcMdApi.h"
+#include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcTraderApi.h"
 %}
 
 /* Parse the header files to generate wrappers */
@@ -79,15 +72,7 @@
 %feature("director") CThostFtdcMdSpi;
 %feature("director") CThostFtdcTraderSpi;
 
-#if defined(__WIN32__) || defined(_WIN32) || defined(_WIN64)
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiDataType.h" 
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcUserApiStruct.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcMdApi.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_win64/ThostFtdcTraderApi.h"
-#else
-%include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiDataType.h" 
-%include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcUserApiStruct.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcMdApi.h"
-%include "./api/ThostTraderApi_v6.3.6_20160606_linux64/ThostFtdcTraderApi.h"
-#endif
-
+%include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcUserApiDataType.h" 
+%include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcUserApiStruct.h"
+%include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcMdApi.h"
+%include "./api/ThostTraderApi_v6.3.6/include/ThostFtdcTraderApi.h"
