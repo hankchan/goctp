@@ -1,0 +1,80 @@
+版本号：V6.3.11_20180109tradeAPI
+兼容版本：CTP1.0 V6.3.11及以上后台系统
+
+
+变更说明：
+
+一、业务变更介绍：
+   
+    1、增加原油期货业务中二级代理商资金校验模式（是否资金共用）查询相关接口；
+    2、支持上期所期权的自对冲业务，增加相关接口（详见下文）；
+    3、改进优化windows版本API连接数限制，以及修复在Fens接入模式时用户退出释放API有阻塞的问题。
+ 
+二、交易类接口中新增期权自对冲类接口及其他变更接口，具体如下：
+
+	///期权自对冲录入请求
+        virtual int ReqOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, int nRequestID) = 0;   
+
+        ///期权自对冲操作请求
+        virtual int ReqOptionSelfCloseAction(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseAction, int nRequestID) = 0;
+ 
+        ///请求查询期权自对冲
+        virtual int ReqQryOptionSelfClose(CThostFtdcQryOptionSelfCloseField *pQryOptionSelfClose, int nRequestID) = 0;
+
+        ///期权自对冲录入请求响应
+        virtual void OnRspOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+        ///期权自对冲操作请求响应
+        virtual void OnRspOptionSelfCloseAction(CThostFtdcInputOptionSelfCloseActionField *pInputOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+        ///请求查询期权自对冲响应
+        virtual void OnRspQryOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+        ///期权自对冲通知
+        virtual void OnRtnOptionSelfClose(CThostFtdcOptionSelfCloseField *pOptionSelfClose) {};
+
+        ///期权自对冲录入错误回报
+        virtual void OnErrRtnOptionSelfCloseInsert(CThostFtdcInputOptionSelfCloseField *pInputOptionSelfClose, CThostFtdcRspInfoField *pRspInfo) {};
+
+        ///期权自对冲操作错误回报
+        virtual void OnErrRtnOptionSelfCloseAction(CThostFtdcOptionSelfCloseActionField *pOptionSelfCloseAction, CThostFtdcRspInfoField *pRspInfo) {};
+
+        
+        ///请求查询二级代理商资金校验模式
+	virtual int ReqQrySecAgentCheckMode(CThostFtdcQrySecAgentCheckModeField *pQrySecAgentCheckMode, int nRequestID) = 0;
+
+	///请求查询二级代理商资金校验模式响应
+	virtual void OnRspQrySecAgentCheckMode(CThostFtdcSecAgentCheckModeField *pSecAgentCheckMode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
+
+
+以上新增接口的具体说明如下：
+
+
+1、期权自对冲请求相关	
+        函数		                含义			              使用的数据结构
+	ReqOptionSelfCloseInsert	期权自对冲录入请求	        CThostFtdcInputOptionSelfCloseField
+        ReqOptionSelfCloseAction        期权自对冲操作请求              CThostFtdcInputOptionSelfCloseActionField
+        ReqQryOptionSelfClose           请求查询期权自对冲              CThostFtdcQryOptionSelfCloseField
+	    
+2、期权自对冲响应相关  
+        函数		                含义			              使用的数据结构
+	OnRspOptionSelfCloseInsert	期权自对冲录入请求响应	        CThostFtdcRspTransferField
+	OnRspOptionSelfCloseAction	期权自对冲操作请求响应	        CThostFtdcInputOptionSelfCloseActionField
+        OnRspQryOptionSelfClose         请求查询期权自对冲响应          CThostFtdcOptionSelfCloseField
+
+3、期权自对冲回报相关
+        函数		                含义			              使用的数据结构
+	OnErrRtnOptionSelfCloseInsert   期权自对冲录入错误回报          CThostFtdcInputOptionSelfCloseField
+        OnErrRtnOptionSelfCloseAction   期权自对冲操作错误回报          CThostFtdcOptionSelfCloseActionField
+
+4、期权自对冲通知
+        函数		                含义			              使用的数据结构
+	OnRtnOptionSelfClose            期权自对冲通知                  CThostFtdcOptionSelfCloseField
+       
+
+5、查询二级代理商资金校验模式（请求及响应）
+        函数		                含义			              使用的数据结构
+	ReqQrySecAgentCheckMode         请求查询二级代理商资金校验模式  CThostFtdcQrySecAgentCheckModeField
+        OnRspQrySecAgentCheckMode       请求查询二级代理商资金校验模式响应  CThostFtdcSecAgentCheckModeField
+
+
