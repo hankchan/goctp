@@ -108,7 +108,7 @@ func (p *GoCThostFtdcMdSpi) OnRspUserLogin(pRspUserLogin goctp.CThostFtdcRspUser
 		log.Printf("获取用户登录信息: %#v %#v %#v\n", pRspUserLogin.GetLoginTime(), pRspUserLogin.GetSystemName(), pRspUserLogin.GetSessionID())
 
 		//ppInstrumentID := []string{"cu1610", "cu1611", "cu1612", "cu1701", "cu1702", "cu1703", "cu1704", "cu1705", "cu1706"}
-		ppInstrumentID := []string{"cu1711", "cu1712"}
+		ppInstrumentID := []string{"cu1810", "cu1811", "cu1812"}
 
 		p.SubscribeMarketData(ppInstrumentID)
 		p.SubscribeForQuoteRsp(ppInstrumentID)
